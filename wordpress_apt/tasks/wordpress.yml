@@ -16,10 +16,10 @@
   # El mòdul "command" pren el nom de la comanda, seguit per una llista d'arguments delimitats per espais.
   # La comanda s'executarà en tots els nodes seleccionats. 
   # el mòdul no s'utilitza el shell per executarles, les variables de shell script no funcionaran amb aquest mòdul.
-  command: cp -a /tmp/wordpress/. /var/www/projecte/wordpress creates=/var/www/projecte/wordpress/wp-settings.php
+  command: cp -a /tmp/wordpress/. /var/www/projecteasix/wordpress creates=/var/www/projecteasix/wordpress/wp-settings.php
   ignore_errors: yes
 
 - name: Wordpress | Copiar config.php utilitzant la Template 
   # Les "templates" són processades pel llenguat Jinja2 (.j2).
-  template: src=templates/wp-config.php.j2 dest=/var/www/projecte/wordpress/wp-config.php owner=root mode=0777
+  template: src=templates/wp-config.php.j2 dest=/var/www/projecteasix/wordpress/wp-config.php owner=root mode=0777
 
