@@ -4,9 +4,15 @@
 
 - name: Desinstal·lar Wordpress
   file:
-    path: "/var/www/projecte/wordpress" 
+    path: "/var/www/projecteasix/wordpress" 
     state: absent    
-    force: yes      
+    force: yes
+
+- name: Borrar wordpress /tmp
+  file:
+    path: "/tmp/wordpress*"
+    state: absent
+    force: yes
 
 - name: Esborrar DB Wordpress
   mysql_db: 
