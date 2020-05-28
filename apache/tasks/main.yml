@@ -49,8 +49,8 @@
 - name: host alias
   lineinfile:
     path: /etc/hosts
-    insertafter: '127.0.0.1    localhost'
-    line: "127.0.1.1	'{{ http_host }}'.com"
+    insertafter: '127.0.0.1 localhost'
+    line: "127.0.1.1 {{ http_host }}.com"
   when: uninstall == "no"
 
 - name: reload apache2
