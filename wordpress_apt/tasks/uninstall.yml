@@ -20,4 +20,10 @@
     state: absent 
     login_user: root
     login_password: '{{ mysql_root_password }}'
-    
+  
+- name: remove apache
+  apt:
+    pkg: wordpress
+    force: yes
+    purge: yes
+    state: absent  
