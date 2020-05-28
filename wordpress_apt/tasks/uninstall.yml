@@ -10,8 +10,8 @@
 
 - name: Borrar wordpress /tmp
   file:
-    path: "/tmp/*"
-    state: absent
+    path: "/tmp"
+    state: empty
     force: yes
 
 - name: Esborrar DB Wordpress
