@@ -1,7 +1,7 @@
 ---
 # defaults file for apache
 
-http_host: "projecte"
-http_conf: "projecte.conf"
+http_host: "projecteasix"
+http_conf: "projecteasix.conf"
 http_port: "80"
 uninstall: "no"

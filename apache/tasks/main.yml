@@ -49,7 +49,7 @@
 - name: host alias
   lineinfile:
     path: /etc/hosts
-    insertafter: 'localhost'
+    insertafter: '127.0.0.1    localhost'
     line: '127.0.1.1	projecte.com'
   when: uninstall == "no"
 
