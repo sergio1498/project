@@ -10,7 +10,7 @@
 
 - name: Borrar wordpress /tmp
   file:
-    path: "/tmp/"
+    path: "/tmp/*"
     state: absent
     force: yes
 
