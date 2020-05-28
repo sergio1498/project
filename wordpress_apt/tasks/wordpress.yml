@@ -25,5 +25,5 @@
   when: uninstall == "no"
 - name: Wordpress | Copiar config.php utilitzant la Template 
   # Les "templates" són processades pel llenguat Jinja2 (.j2).
-  template: src=templates/wp-config.php.j2 dest=/var/lib/wordpress/wp-config.php owner=root mode=0777
+  template: src=templates/wp-config.php.j2 dest=/usr/share/wordpress/wp-config.php owner=root mode=0777
 
