@@ -4,7 +4,7 @@
 
 - name: Desinstal·lar Wordpress
   file:
-    path: "/var/www/projecteasix/wordpress" 
+    path: /usr/share/wordpress 
     state: absent    
     force: yes
 
