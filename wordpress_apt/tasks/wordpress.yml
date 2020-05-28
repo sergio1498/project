@@ -1,29 +1,46 @@
 ---
 
-#- name: WordPress | Descarregar
+- name: WordPress | Descarregar
   # Descarreguem la versió més nova de Wordpress.
   # "get_url" descarrega arxius desde http, https o ftp al servidor.
-  #get_url: url=https://wordpress.org/latest.zip dest=/tmp/wordpress.zip
-  #ignore_errors: yes
+  get_url: 
+    url: https://wordpress.org/latest.zip 
+    dest: "/tmp/wordpress.zip"
 
-  #- name: WordPress | Descomprimir
+- name: WordPress | Descomprimir
   # El mòdul "unarchive" descomprimeix un arxiu, sempre que hi hagi un arcxiu per a descomprimir.
-  # unarchive: src=/tmp/wordpress.zip dest=/tmp copy=no creates=/tmp/wordpress/wp-settings.php
-  # A vegades el retorn diferent de 0 d'una comanda, no es un error.
-  #ignore_errors: yes
-
-  #- name: WordPress | Copiar els arxius al directori d'apache /var/www/html/
+  unarchive: 
+    src: "/tmp/wordpress.zip" 
+    dest: "/tmp" 
+    copy: no
+    
+- name: WordPress | Copiar els arxius al directori d'apache /var/www/projecte/
   # El mòdul "command" pren el nom de la comanda, seguit per una llista d'arguments delimitats per espais.
   # La comanda s'executarà en tots els nodes seleccionats. 
   # el mòdul no s'utilitza el shell per executarles, les variables de shell script no funcionaran amb aquest mòdul.
-  #command: cp -a /tmp/wordpress/. /var/www/projecteasix/wordpress creates=/var/www/projecteasix/wordpress/wp-settings.php
-  #ignore_errors: yes
-- name: install wordpress
-  apt: 
-    name: wordpress 
-    state: present
-  when: uninstall == "no"
+  command: cp -a /tmp/wordpress/. /var/www/projecte/wordpress creates="/var/www/projecte/wordpress/wp-settings.php"
+
+- name: Wordpress | Esborrar l'arxiu de /tmp
+  file: 
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /tmp/wordpress.zip
+    - /tmp/wordpress
+
 - name: Wordpress | Copiar config.php utilitzant la Template 
   # Les "templates" són processades pel llenguat Jinja2 (.j2).
-  template: src=templates/wp-config.php.j2 dest=/usr/share/wordpress/wp-config.php owner=root mode=0777
+  template:   
+    src: templates/wp-config.php.j2 
+    dest: "/var/www/projecte/wordpress/wp-config.php" 
+
+- name: Wordpresss | Change ownership of wp-content directory
+  file: 
+    path: /var/www/projecte/wordpress/wp-content/ 
+    owner: www-data 
+    group: www-data 
+    mode: 755 
+    state: directory 
+    recurse: yes
+    
 

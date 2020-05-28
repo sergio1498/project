@@ -4,45 +4,9 @@
 
 - name: Desinstal·lar Wordpress
   file:
-    path: /usr/share/wordpress 
+    path: "/var/www/projecte/wordpress" 
     state: absent    
-    force: yes
-
-- name: Desinstal·lar Wordpress
-  file:
-    path: /var/lib/wordpress
-    state: absent
-    force: yes
-
-- name: Desinstal·lar Wordpress
-  file:
-    path: /etc/wordpress
-    state: absent
-    force: yes
-
-- name: Desinstal·lar Wordpress
-  file:
-    path: /var/lib/mysql/wordpress
-    state: absent
-    force: yes
-
-- name: Desinstal·lar Wordpress
-  file:
-    path: /usr/share/doc/wordpress
-    state: absent
-    force: yes
-
-- name: Desinstal·lar Wordpress
-  file:
-    path: /usr/share/lintian/overrides/wordpress
-    state: absent
-    force: yes
-
-- name: Borrar wordpress /tmp
-  file:
-    path: /tmp/wordpress
-    state: absent
-    force: yes
+    force: yes    
 
 - name: Esborrar DB Wordpress
   mysql_db: 
@@ -50,10 +14,4 @@
     state: absent 
     login_user: root
     login_password: '{{ mysql_root_password }}'
-  
-- name: remove wordpress
-  apt:
-    pkg: wordpress
-    force: yes
-    purge: yes
-    state: absent  
+

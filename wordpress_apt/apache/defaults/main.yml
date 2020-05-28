@@ -1,7 +1,0 @@
----
-# defaults file for apache
-
-http_host: "projecte"
-http_conf: "projecte.conf"
-http_port: "80"
-uninstall: "no"

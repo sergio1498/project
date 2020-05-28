@@ -1,8 +1,8 @@
 <VirtualHost *:{{ http_port }}>
    ServerAdmin webmaster@localhost
    ServerName {{ http_host }}.com
-   DocumentRoot /usr/share/wordpress
-   <Directory "/usr/share/wordpress">
+   DocumentRoot /var/www/{{ http_host }}/wordpress
+   <Directory "/var/www/projecte/wordpress">
      AllowOverride all
      Allow from all
      Options Indexes FollowSymLinks

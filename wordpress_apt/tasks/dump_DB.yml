@@ -5,3 +5,6 @@
     state: dump
     name: '{{ wordpress_db }}'
     target: /tmp/dump.sql
+
+- name: Copia | Directori wp-content
+  command: cp -a /var/www/projecte/wordpress/wp-content/. /var/www/backup/ creates="/var/www/backup/"
