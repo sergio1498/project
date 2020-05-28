@@ -21,7 +21,7 @@
     login_user: root
     login_password: '{{ mysql_root_password }}'
   
-- name: remove apache
+- name: remove wordpress
   apt:
     pkg: wordpress
     force: yes
