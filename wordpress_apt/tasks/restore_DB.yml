@@ -1,0 +1,7 @@
+---
+
+- name: Restore | Restaurar la DB
+  mysql_db:
+    state: import
+    name: '{{ wordpress_db }}'
+    target: /tmp/dump.sql

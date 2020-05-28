@@ -1,0 +1,64 @@
+---
+# tasks file for apache
+
+- name: update
+  apt:
+    update_cache: yes
+
+- name: install apache2
+  apt: 
+    name: apache2 
+    state: present
+  when: uninstall == "no"
+
+- name: restart apache2
+  service: 
+    name: apache2
+    state: restarted
+  when: uninstall == "no"
+
+- name: create domain drectory
+  file:
+    path: "/var/www/{{ http_host }}"
+    state: directory
+    owner: '{{ ansible_env.USER }}'
+    mode: '0755'
+  when: uninstall == "no"
+
+- name: copy index test page
+  template:
+    src: "templates/index.html.j2"
+    dest: "/var/www/{{ http_host }}/index.html"
+  when: uninstall == "no"
+
+- name: set up Apache virtuahHost
+  template:
+    src: "templates/apache.conf.j2"
+    dest: "/etc/apache2/sites-available/{{ http_conf }}"
+  when: uninstall == "no"
+
+- name: Enable vhost
+  command: a2ensite '{{ http_host }}' 
+  when: uninstall == "no"
+       
+- apache2_module:
+    state: absent
+    name: '000-default.conf'
+  when: uninstall == "no"
+
+- name: host alias
+  lineinfile:
+    path: /etc/hosts
+    insertafter: 'localhost'
+    line: '127.0.1.1	projecte.com'
+  when: uninstall == "no"
+
+- name: reload apache2
+  service:
+    name: apache2
+    state: reloaded
+  when: uninstall == "no"
+
+- name: import tasks
+  import_tasks: uninstall.yml
+  when: uninstall == "yes"

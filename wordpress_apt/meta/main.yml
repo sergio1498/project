@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  role_name: Ansible-WordPress-Role
+  author: Marc Valero
+  version: 1.0
+  name: Ansible-WordPress-Role
+  displayName: Marc Valero
+  metadata:
+    displayName: Ansible-WordPress-Role
+    providerDisplayName: "Marc Valero"
+  min_ansible_version: 2.7
+  galaxy_tags:
+    - web
+    - database
+    - wordpress
+  dependencies: []

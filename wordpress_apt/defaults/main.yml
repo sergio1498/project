@@ -1,0 +1,23 @@
+---
+# defaults file for wordpress
+
+# #Password pel root de la DB
+mysql_root_password: "@123456789"
+
+## Nom WordPress-DB:
+wordpress_db: "wordpress"
+
+## Usuari Wordpress DB:
+wordpress_dbuser: "wordpress"
+
+## WordPress DB Password
+wordpress_dbpass: "@123456789"
+
+## WordPress DB localhost hostname
+host: "localhost"
+
+uninstall: "no"
+
+dump: "no"
+
+restore: "no"

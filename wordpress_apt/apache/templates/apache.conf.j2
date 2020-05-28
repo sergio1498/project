@@ -1,0 +1,15 @@
+<VirtualHost *:{{ http_port }}>
+   ServerAdmin webmaster@localhost
+   ServerName {{ http_host }}.com
+   DocumentRoot /var/www/{{ http_host }}/wordpress
+   <Directory "/var/www/projecte/wordpress">
+     AllowOverride all
+     Allow from all
+     Options Indexes FollowSymLinks
+     Options +Indexes
+     Order allow,deny
+     Require all granted
+   </Directory>
+   ErrorLog ${APACHE_LOG_DIR}/error.log
+   CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>

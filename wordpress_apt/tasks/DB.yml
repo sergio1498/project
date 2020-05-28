@@ -1,0 +1,70 @@
+---
+
+- name: MySQL | Instal·lació dels paquets
+  # "apt" utilitza el gestor de paquets apt.
+  apt: 
+    pkg: ['mysql-server', 'python-mysqldb']
+    state: present
+
+- name: MySQL | Iniciar el servei
+  service: 
+    name: mysql 
+    state: started
+  
+- name: MySQL | Comprovar si el root té o no password
+  shell: mysqladmin -u root status
+  changed_when: false
+  failed_when: false
+  register: root_pwd_check
+
+- debug: var=root_pwd_check
+
+- name: MySQL | Seleccionar el pass per el root per primer cop
+  # La variable "mysql_root_password" està al main de default
+  mysql_user: 
+    name: "root"
+    password: '{{ mysql_root_password }}'  
+    login_user: "root"
+    login_password: '{{ mysql_root_password }}' 
+    host: '{{ host }}' 
+    state: present
+  ignore_errors: yes
+
+- name: MySQL | Esborrar l'usuari anònim si existeix
+  mysql_user: 
+    name: '' 
+    login_user: "root" 
+    login_password: '{{ mysql_root_password }}' 
+    host: '{{ host }}' 
+    state: absent
+  ignore_errors: yes
+
+- name: MySQL | Esborrar la DB de Test si existeix
+  mysql_db: 
+    name: test 
+    state: absent 
+    login_user: root 
+    login_password: '{{ mysql_root_password }}' 
+  ignore_errors: yes      
+
+- name: Wordpress | Crear la DB amb l'usuari root
+  # La variable "wordpress_db", està al main de vars
+  mysql_db: 
+    name: '{{ wordpress_db }}' 
+    state: present 
+    login_user: root
+    login_password: '{{ mysql_root_password }}'
+  ignore_errors: yes
+
+- name: Wordpress | Crear l'usuari i donarli privilegis per la DB
+  # Les variables "wordpress_dbuser" i "wordpress_dbpass", estàm al main de vars
+  mysql_user: 
+    name: '{{ wordpress_dbuser }}' 
+    host: '{{ host }}' 
+    password: '{{ wordpress_dbpass }}' 
+    state: present 
+    priv: "{{ wordpress_db }}.*:ALL"  
+    login_user: root 
+    login_password: '{{ mysql_root_password }}'
+  ignore_errors: yes
+

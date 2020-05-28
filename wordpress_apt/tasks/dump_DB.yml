@@ -1,0 +1,7 @@
+--- 
+
+- name: Dump | Fa una copia de la DB
+  mysql_db:
+    state: dump
+    name: '{{ wordpress_db }}'
+    target: /tmp/dump.sql
