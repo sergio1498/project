@@ -8,6 +8,36 @@
     state: absent    
     force: yes
 
+- name: Desinstal·lar Wordpress
+  file:
+    path: /var/lib/wordpress
+    state: absent
+    force: yes
+
+- name: Desinstal·lar Wordpress
+  file:
+    path: /etc/wordpress
+    state: absent
+    force: yes
+
+- name: Desinstal·lar Wordpress
+  file:
+    path: /var/lib/mysql/wordpress
+    state: absent
+    force: yes
+
+- name: Desinstal·lar Wordpress
+  file:
+    path: /usr/share/doc/wordpress
+    state: absent
+    force: yes
+
+- name: Desinstal·lar Wordpress
+  file:
+    path: /usr/share/lintian/overrides/wordpress
+    state: absent
+    force: yes
+
 - name: Borrar wordpress /tmp
   file:
     path: /tmp/wordpress
