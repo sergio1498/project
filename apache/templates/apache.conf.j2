@@ -2,7 +2,7 @@
    ServerAdmin webmaster@localhost
    ServerName {{ http_host }}.com
    DocumentRoot /var/www/{{ http_host }}/wordpress
-   <Directory "/var/www/projecte/wordpress">
+   <Directory "/var/www/{{ http_host }}/wordpress">
      AllowOverride all
      Allow from all
      Options Indexes FollowSymLinks
