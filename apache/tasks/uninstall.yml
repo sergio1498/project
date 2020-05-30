@@ -1,8 +1,13 @@
 ---
 
-- name: remove apache
+- name: autoremove
   apt:
-    pkg: apache2*
-    force: yes
-    purge: yes
-    state: absent  
+    autoremove: yes
+
+- name:
+  apt:
+    name: "apache2.*"
+    state: absent
+
+- name: dpkg
+  command: dpkg -S `which apache2`
