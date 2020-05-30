@@ -8,4 +8,4 @@
   command: sudo apt remove apache2.*
 
 - name: dpkg
-  command: dpkg -S `which apache2`
+  command: dpkg -S /usr/sbin/apache2
