@@ -1,18 +1,6 @@
 ---
 
-- name: autoremove
-  command: sudo apt autoremove
-
-- name:
-  command: sudo apt remove apache2.*
-
-- name: dpkg
-  command: dpkg -S /usr/sbin/apache2
-
-- name: purge
-  command: apt-get purge apache2
-
-- name: autoremove
+- name: remove
   apt:
     pkg: apache2*
     force: yes
