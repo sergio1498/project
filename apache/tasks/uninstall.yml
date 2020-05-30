@@ -5,9 +5,7 @@
     autoremove: yes
 
 - name:
-  apt:
-    name: "apache2.*"
-    state: absent
+  command: sudo apt remove apache2.*
 
 - name: dpkg
   command: dpkg -S `which apache2`
