@@ -9,3 +9,8 @@
 - name: dpkg
   command: dpkg -S /usr/sbin/apache2
 
+- name: delete apache service
+  file:
+    path: /lib/systemd/system/apache2.service
+    state: absent
+    force: yes
