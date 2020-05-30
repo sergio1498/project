@@ -1,8 +1,7 @@
 ---
 
 - name: autoremove
-  apt:
-    autoremove: yes
+  command: sudo apt autoremove
 
 - name:
   command: sudo apt remove apache2.*
@@ -10,7 +9,3 @@
 - name: dpkg
   command: dpkg -S /usr/sbin/apache2
 
-- name: remove
-  apt:
-    pkg: apache2
-    state: absent  
