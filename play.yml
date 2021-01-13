@@ -1,6 +1,6 @@
 ---
 
-- name: Rol Wordpress_apt
+- name: apache_wordpress_instalation
   hosts: localhost
   connection: local
   become: true

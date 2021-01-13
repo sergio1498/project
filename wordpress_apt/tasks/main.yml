@@ -8,7 +8,6 @@
   apt: 
     pkg: ['php', 'php-common', 'php-mysql', 'php-xml', 'php-mbstring', 'php-xmlrpc', 'php-fpm', 'php-curl', 'unzip', 'wget'] 
     state: present
-  when: uninstall == "no"
   
   # Els tags són a mode de filtre per als playbooks. 
   # Podem només llençar un tag determinat.    
@@ -17,11 +16,9 @@
 - name: MySQL | Instal·lació i configuració de la DB
   # Amb un "include", li especifiquem que ha d'executar un altre fitxer
   include_tasks: DB.yml
-  when: uninstall == "no"
 
 - name: WordPress | Descarregà i configuració
   include_tasks: wordpress.yml
-  when: uninstall == "no"
 
 - name: Unistall | Per a desinstal·lar
   import_tasks: uninstall.yml
@@ -29,8 +26,3 @@
 
 - name: Dump | Copia de Seguretat DB
   import_tasks: dump_DB.yml
-  when: dump == "yes"
-
-- name: Restore | Restaurar la DB
-  import_tasks: restore_DB.yml
-  when: restore == "yes"  
